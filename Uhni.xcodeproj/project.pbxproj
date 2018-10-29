@@ -1,0 +1,675 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B60DF2D3183A8B4200AFE1C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF2D2183A8B4200AFE1C3 /* Foundation.framework */; };
+		B60DF2D5183A8B4200AFE1C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF2D4183A8B4200AFE1C3 /* CoreGraphics.framework */; };
+		B60DF2D7183A8B4200AFE1C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF2D6183A8B4200AFE1C3 /* UIKit.framework */; };
+		B60DF2DD183A8B4200AFE1C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B60DF2DB183A8B4200AFE1C3 /* InfoPlist.strings */; };
+		B60DF2DF183A8B4200AFE1C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B60DF2DE183A8B4200AFE1C3 /* main.m */; };
+		B60DF2E3183A8B4200AFE1C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B60DF2E2183A8B4200AFE1C3 /* AppDelegate.m */; };
+		B60DF2EC183A8B4200AFE1C3 /* GameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B60DF2EB183A8B4200AFE1C3 /* GameViewController.mm */; };
+		B60DF2EE183A8B4200AFE1C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B60DF2ED183A8B4200AFE1C3 /* Images.xcassets */; };
+		B60DF2F5183A8B4200AFE1C3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF2F4183A8B4200AFE1C3 /* XCTest.framework */; };
+		B60DF2F6183A8B4200AFE1C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF2D2183A8B4200AFE1C3 /* Foundation.framework */; };
+		B60DF2F7183A8B4200AFE1C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF2D6183A8B4200AFE1C3 /* UIKit.framework */; };
+		B60DF2FF183A8B4200AFE1C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B60DF2FD183A8B4200AFE1C3 /* InfoPlist.strings */; };
+		B60DF301183A8B4200AFE1C3 /* UhniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B60DF300183A8B4200AFE1C3 /* UhniTests.m */; };
+		B60DF30C183A8BB500AFE1C3 /* ObjectView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B60DF30B183A8BB500AFE1C3 /* ObjectView.mm */; };
+		B60DF310183A8F3B00AFE1C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF30F183A8F3B00AFE1C3 /* QuartzCore.framework */; };
+		B60DF312183A8F4500AFE1C3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF311183A8F4500AFE1C3 /* CoreMedia.framework */; };
+		B60DF314183A8F4E00AFE1C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60DF313183A8F4E00AFE1C3 /* AVFoundation.framework */; };
+		B60DF316183AB50E00AFE1C3 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60DF315183AB50E00AFE1C3 /* GameViewController.xib */; };
+		B60DF319183AB59D00AFE1C3 /* ControlViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B60DF318183AB59D00AFE1C3 /* ControlViewController.mm */; };
+		B60DF31B183ABD9600AFE1C3 /* ControlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60DF31A183ABD9600AFE1C3 /* ControlViewController.xib */; };
+		B60DF3A7183CB43200AFE1C3 /* dcb.png in Resources */ = {isa = PBXBuildFile; fileRef = B60DF3A6183CB43200AFE1C3 /* dcb.png */; };
+		B6DC724A216B82DD007BCC95 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC7249216B82DD007BCC95 /* AssetsLibrary.framework */; };
+		B6DC724C216B82E4007BCC95 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC724B216B82E4007BCC95 /* Accelerate.framework */; };
+		B6DC724E216B82F1007BCC95 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC724D216B82F1007BCC95 /* CoreImage.framework */; };
+		B6DC7250216B8302007BCC95 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC724F216B8302007BCC95 /* CoreVideo.framework */; };
+		B6DC7252216B831F007BCC95 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC7251216B831F007BCC95 /* libc++.tbd */; };
+		B6DC7255216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DC7253216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m */; };
+		B6FD5C3B1B28BF4D001B31E5 /* WallView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B6FD5C3A1B28BF4D001B31E5 /* WallView.mm */; };
+		B6FD5C3D1B28C30D001B31E5 /* WallObjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6FD5C3C1B28C30D001B31E5 /* WallObjectView.xib */; };
+		B6FD5C401B28C476001B31E5 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD5C3F1B28C476001B31E5 /* UIView+Layout.m */; };
+		D17345B650E6FA53F7DBF93C /* libPods-UhniTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC77776711FA47E8776E752E /* libPods-UhniTests.a */; };
+		FCBBDB705F9D09D8FD9FD9AA /* libPods-Uhni.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC43422F1CDE0D4F34B55D24 /* libPods-Uhni.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B60DF2F8183A8B4200AFE1C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B60DF2C7183A8B4200AFE1C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B60DF2CE183A8B4200AFE1C3;
+			remoteInfo = Uhni;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07A260E4D678C952617842B7 /* Pods-Uhni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uhni.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uhni/Pods-Uhni.release.xcconfig"; sourceTree = "<group>"; };
+		3E5DA968AF1B97A9D106E235 /* Pods-UhniTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UhniTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UhniTests/Pods-UhniTests.release.xcconfig"; sourceTree = "<group>"; };
+		B60DF2CF183A8B4200AFE1C3 /* Uhni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uhni.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B60DF2D2183A8B4200AFE1C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B60DF2D4183A8B4200AFE1C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B60DF2D6183A8B4200AFE1C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B60DF2DA183A8B4200AFE1C3 /* Uhni-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Uhni-Info.plist"; sourceTree = "<group>"; };
+		B60DF2DC183A8B4200AFE1C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B60DF2DE183A8B4200AFE1C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B60DF2E0183A8B4200AFE1C3 /* Uhni-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Uhni-Prefix.pch"; sourceTree = "<group>"; };
+		B60DF2E1183A8B4200AFE1C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B60DF2E2183A8B4200AFE1C3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B60DF2EA183A8B4200AFE1C3 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		B60DF2EB183A8B4200AFE1C3 /* GameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameViewController.mm; sourceTree = "<group>"; };
+		B60DF2ED183A8B4200AFE1C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B60DF2F3183A8B4200AFE1C3 /* UhniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UhniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B60DF2F4183A8B4200AFE1C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B60DF2FC183A8B4200AFE1C3 /* UhniTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UhniTests-Info.plist"; sourceTree = "<group>"; };
+		B60DF2FE183A8B4200AFE1C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B60DF300183A8B4200AFE1C3 /* UhniTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UhniTests.m; sourceTree = "<group>"; };
+		B60DF30A183A8BB500AFE1C3 /* ObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectView.h; sourceTree = "<group>"; };
+		B60DF30B183A8BB500AFE1C3 /* ObjectView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectView.mm; sourceTree = "<group>"; };
+		B60DF30F183A8F3B00AFE1C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B60DF311183A8F4500AFE1C3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B60DF313183A8F4E00AFE1C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B60DF315183AB50E00AFE1C3 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		B60DF317183AB59D00AFE1C3 /* ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlViewController.h; sourceTree = "<group>"; };
+		B60DF318183AB59D00AFE1C3 /* ControlViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ControlViewController.mm; sourceTree = "<group>"; };
+		B60DF31A183ABD9600AFE1C3 /* ControlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlViewController.xib; sourceTree = "<group>"; };
+		B60DF3A6183CB43200AFE1C3 /* dcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dcb.png; sourceTree = "<group>"; };
+		B6DC7249216B82DD007BCC95 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B6DC724B216B82E4007BCC95 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		B6DC724D216B82F1007BCC95 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		B6DC724F216B8302007BCC95 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B6DC7251216B831F007BCC95 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B6DC7253216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CoordinateTransform.m"; sourceTree = "<group>"; };
+		B6DC7254216BF2E9007BCC95 /* UIImageView+CoordinateTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CoordinateTransform.h"; sourceTree = "<group>"; };
+		B6FD5C381B28A864001B31E5 /* ControlViewController+GameStep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ControlViewController+GameStep.h"; sourceTree = "<group>"; };
+		B6FD5C391B28BF4D001B31E5 /* WallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallView.h; sourceTree = "<group>"; };
+		B6FD5C3A1B28BF4D001B31E5 /* WallView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WallView.mm; sourceTree = "<group>"; };
+		B6FD5C3C1B28C30D001B31E5 /* WallObjectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallObjectView.xib; sourceTree = "<group>"; };
+		B6FD5C3E1B28C476001B31E5 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		B6FD5C3F1B28C476001B31E5 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		BCD1156D81C6344918F983AE /* Pods-UhniTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UhniTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UhniTests/Pods-UhniTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C439EDA3174FD2E86785D6A6 /* Pods-Uhni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uhni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Uhni/Pods-Uhni.debug.xcconfig"; sourceTree = "<group>"; };
+		EC43422F1CDE0D4F34B55D24 /* libPods-Uhni.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Uhni.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC77776711FA47E8776E752E /* libPods-UhniTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UhniTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B60DF2CC183A8B4200AFE1C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6DC7252216B831F007BCC95 /* libc++.tbd in Frameworks */,
+				B6DC7250216B8302007BCC95 /* CoreVideo.framework in Frameworks */,
+				B60DF312183A8F4500AFE1C3 /* CoreMedia.framework in Frameworks */,
+				B6DC724E216B82F1007BCC95 /* CoreImage.framework in Frameworks */,
+				B6DC724C216B82E4007BCC95 /* Accelerate.framework in Frameworks */,
+				B6DC724A216B82DD007BCC95 /* AssetsLibrary.framework in Frameworks */,
+				B60DF314183A8F4E00AFE1C3 /* AVFoundation.framework in Frameworks */,
+				B60DF310183A8F3B00AFE1C3 /* QuartzCore.framework in Frameworks */,
+				B60DF2D5183A8B4200AFE1C3 /* CoreGraphics.framework in Frameworks */,
+				B60DF2D7183A8B4200AFE1C3 /* UIKit.framework in Frameworks */,
+				B60DF2D3183A8B4200AFE1C3 /* Foundation.framework in Frameworks */,
+				FCBBDB705F9D09D8FD9FD9AA /* libPods-Uhni.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B60DF2F0183A8B4200AFE1C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B60DF2F5183A8B4200AFE1C3 /* XCTest.framework in Frameworks */,
+				B60DF2F7183A8B4200AFE1C3 /* UIKit.framework in Frameworks */,
+				B60DF2F6183A8B4200AFE1C3 /* Foundation.framework in Frameworks */,
+				D17345B650E6FA53F7DBF93C /* libPods-UhniTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62AAA1506DAB251541B1BC3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C439EDA3174FD2E86785D6A6 /* Pods-Uhni.debug.xcconfig */,
+				07A260E4D678C952617842B7 /* Pods-Uhni.release.xcconfig */,
+				BCD1156D81C6344918F983AE /* Pods-UhniTests.debug.xcconfig */,
+				3E5DA968AF1B97A9D106E235 /* Pods-UhniTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B60DF2C6183A8B4200AFE1C3 = {
+			isa = PBXGroup;
+			children = (
+				B60DF2D8183A8B4200AFE1C3 /* Uhni */,
+				B60DF2FA183A8B4200AFE1C3 /* UhniTests */,
+				B60DF2D1183A8B4200AFE1C3 /* Frameworks */,
+				B60DF2D0183A8B4200AFE1C3 /* Products */,
+				62AAA1506DAB251541B1BC3E /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		B60DF2D0183A8B4200AFE1C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B60DF2CF183A8B4200AFE1C3 /* Uhni.app */,
+				B60DF2F3183A8B4200AFE1C3 /* UhniTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B60DF2D1183A8B4200AFE1C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC7251216B831F007BCC95 /* libc++.tbd */,
+				B6DC724F216B8302007BCC95 /* CoreVideo.framework */,
+				B6DC724D216B82F1007BCC95 /* CoreImage.framework */,
+				B6DC724B216B82E4007BCC95 /* Accelerate.framework */,
+				B6DC7249216B82DD007BCC95 /* AssetsLibrary.framework */,
+				B60DF313183A8F4E00AFE1C3 /* AVFoundation.framework */,
+				B60DF311183A8F4500AFE1C3 /* CoreMedia.framework */,
+				B60DF30F183A8F3B00AFE1C3 /* QuartzCore.framework */,
+				B60DF2D2183A8B4200AFE1C3 /* Foundation.framework */,
+				B60DF2D4183A8B4200AFE1C3 /* CoreGraphics.framework */,
+				B60DF2D6183A8B4200AFE1C3 /* UIKit.framework */,
+				B60DF2F4183A8B4200AFE1C3 /* XCTest.framework */,
+				EC43422F1CDE0D4F34B55D24 /* libPods-Uhni.a */,
+				FC77776711FA47E8776E752E /* libPods-UhniTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B60DF2D8183A8B4200AFE1C3 /* Uhni */ = {
+			isa = PBXGroup;
+			children = (
+				B60DF2E1183A8B4200AFE1C3 /* AppDelegate.h */,
+				B60DF2E2183A8B4200AFE1C3 /* AppDelegate.m */,
+				B60DF31A183ABD9600AFE1C3 /* ControlViewController.xib */,
+				B60DF317183AB59D00AFE1C3 /* ControlViewController.h */,
+				B6FD5C381B28A864001B31E5 /* ControlViewController+GameStep.h */,
+				B60DF318183AB59D00AFE1C3 /* ControlViewController.mm */,
+				B60DF315183AB50E00AFE1C3 /* GameViewController.xib */,
+				B60DF2EA183A8B4200AFE1C3 /* GameViewController.h */,
+				B60DF2EB183A8B4200AFE1C3 /* GameViewController.mm */,
+				B60DF30A183A8BB500AFE1C3 /* ObjectView.h */,
+				B60DF30B183A8BB500AFE1C3 /* ObjectView.mm */,
+				B6FD5C391B28BF4D001B31E5 /* WallView.h */,
+				B6FD5C3A1B28BF4D001B31E5 /* WallView.mm */,
+				B6FD5C3C1B28C30D001B31E5 /* WallObjectView.xib */,
+				B6FD5C3E1B28C476001B31E5 /* UIView+Layout.h */,
+				B6FD5C3F1B28C476001B31E5 /* UIView+Layout.m */,
+				B60DF3A6183CB43200AFE1C3 /* dcb.png */,
+				B6DC7254216BF2E9007BCC95 /* UIImageView+CoordinateTransform.h */,
+				B6DC7253216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m */,
+				B60DF2ED183A8B4200AFE1C3 /* Images.xcassets */,
+				B60DF2D9183A8B4200AFE1C3 /* Supporting Files */,
+			);
+			path = Uhni;
+			sourceTree = "<group>";
+		};
+		B60DF2D9183A8B4200AFE1C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B60DF2DA183A8B4200AFE1C3 /* Uhni-Info.plist */,
+				B60DF2DB183A8B4200AFE1C3 /* InfoPlist.strings */,
+				B60DF2DE183A8B4200AFE1C3 /* main.m */,
+				B60DF2E0183A8B4200AFE1C3 /* Uhni-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B60DF2FA183A8B4200AFE1C3 /* UhniTests */ = {
+			isa = PBXGroup;
+			children = (
+				B60DF300183A8B4200AFE1C3 /* UhniTests.m */,
+				B60DF2FB183A8B4200AFE1C3 /* Supporting Files */,
+			);
+			path = UhniTests;
+			sourceTree = "<group>";
+		};
+		B60DF2FB183A8B4200AFE1C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B60DF2FC183A8B4200AFE1C3 /* UhniTests-Info.plist */,
+				B60DF2FD183A8B4200AFE1C3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B60DF2CE183A8B4200AFE1C3 /* Uhni */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B60DF304183A8B4200AFE1C3 /* Build configuration list for PBXNativeTarget "Uhni" */;
+			buildPhases = (
+				6B6FB2739B9E30686820280B /* [CP] Check Pods Manifest.lock */,
+				B60DF2CB183A8B4200AFE1C3 /* Sources */,
+				B60DF2CC183A8B4200AFE1C3 /* Frameworks */,
+				B60DF2CD183A8B4200AFE1C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Uhni;
+			productName = Uhni;
+			productReference = B60DF2CF183A8B4200AFE1C3 /* Uhni.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B60DF2F2183A8B4200AFE1C3 /* UhniTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B60DF307183A8B4200AFE1C3 /* Build configuration list for PBXNativeTarget "UhniTests" */;
+			buildPhases = (
+				FAA5BB755C63A3062EC10E0C /* [CP] Check Pods Manifest.lock */,
+				B60DF2EF183A8B4200AFE1C3 /* Sources */,
+				B60DF2F0183A8B4200AFE1C3 /* Frameworks */,
+				B60DF2F1183A8B4200AFE1C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B60DF2F9183A8B4200AFE1C3 /* PBXTargetDependency */,
+			);
+			name = UhniTests;
+			productName = UhniTests;
+			productReference = B60DF2F3183A8B4200AFE1C3 /* UhniTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B60DF2C7183A8B4200AFE1C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Petr Bursik";
+				TargetAttributes = {
+					B60DF2CE183A8B4200AFE1C3 = {
+						DevelopmentTeam = J4Y5TVW8QV;
+						ProvisioningStyle = Automatic;
+					};
+					B60DF2F2183A8B4200AFE1C3 = {
+						TestTargetID = B60DF2CE183A8B4200AFE1C3;
+					};
+				};
+			};
+			buildConfigurationList = B60DF2CA183A8B4200AFE1C3 /* Build configuration list for PBXProject "Uhni" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B60DF2C6183A8B4200AFE1C3;
+			productRefGroup = B60DF2D0183A8B4200AFE1C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B60DF2CE183A8B4200AFE1C3 /* Uhni */,
+				B60DF2F2183A8B4200AFE1C3 /* UhniTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B60DF2CD183A8B4200AFE1C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B60DF31B183ABD9600AFE1C3 /* ControlViewController.xib in Resources */,
+				B60DF2EE183A8B4200AFE1C3 /* Images.xcassets in Resources */,
+				B60DF316183AB50E00AFE1C3 /* GameViewController.xib in Resources */,
+				B6FD5C3D1B28C30D001B31E5 /* WallObjectView.xib in Resources */,
+				B60DF3A7183CB43200AFE1C3 /* dcb.png in Resources */,
+				B60DF2DD183A8B4200AFE1C3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B60DF2F1183A8B4200AFE1C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B60DF2FF183A8B4200AFE1C3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6B6FB2739B9E30686820280B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Uhni-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAA5BB755C63A3062EC10E0C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UhniTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B60DF2CB183A8B4200AFE1C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6FD5C3B1B28BF4D001B31E5 /* WallView.mm in Sources */,
+				B60DF2EC183A8B4200AFE1C3 /* GameViewController.mm in Sources */,
+				B60DF30C183A8BB500AFE1C3 /* ObjectView.mm in Sources */,
+				B60DF2E3183A8B4200AFE1C3 /* AppDelegate.m in Sources */,
+				B6FD5C401B28C476001B31E5 /* UIView+Layout.m in Sources */,
+				B6DC7255216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m in Sources */,
+				B60DF2DF183A8B4200AFE1C3 /* main.m in Sources */,
+				B60DF319183AB59D00AFE1C3 /* ControlViewController.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B60DF2EF183A8B4200AFE1C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B60DF301183A8B4200AFE1C3 /* UhniTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B60DF2F9183A8B4200AFE1C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B60DF2CE183A8B4200AFE1C3 /* Uhni */;
+			targetProxy = B60DF2F8183A8B4200AFE1C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B60DF2DB183A8B4200AFE1C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B60DF2DC183A8B4200AFE1C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B60DF2FD183A8B4200AFE1C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B60DF2FE183A8B4200AFE1C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B60DF302183A8B4200AFE1C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B60DF303183A8B4200AFE1C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B60DF305183A8B4200AFE1C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C439EDA3174FD2E86785D6A6 /* Pods-Uhni.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J4Y5TVW8QV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Uhni/Uhni-Prefix.pch";
+				INFOPLIST_FILE = "Uhni/Uhni-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = brx2.Uhni;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B60DF306183A8B4200AFE1C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07A260E4D678C952617842B7 /* Pods-Uhni.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J4Y5TVW8QV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Uhni/Uhni-Prefix.pch";
+				INFOPLIST_FILE = "Uhni/Uhni-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = brx2.Uhni;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B60DF308183A8B4200AFE1C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCD1156D81C6344918F983AE /* Pods-UhniTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Uhni.app/Uhni";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Uhni/Uhni-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "UhniTests/UhniTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "brx.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B60DF309183A8B4200AFE1C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E5DA968AF1B97A9D106E235 /* Pods-UhniTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Uhni.app/Uhni";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Uhni/Uhni-Prefix.pch";
+				INFOPLIST_FILE = "UhniTests/UhniTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "brx.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B60DF2CA183A8B4200AFE1C3 /* Build configuration list for PBXProject "Uhni" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B60DF302183A8B4200AFE1C3 /* Debug */,
+				B60DF303183A8B4200AFE1C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B60DF304183A8B4200AFE1C3 /* Build configuration list for PBXNativeTarget "Uhni" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B60DF305183A8B4200AFE1C3 /* Debug */,
+				B60DF306183A8B4200AFE1C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B60DF307183A8B4200AFE1C3 /* Build configuration list for PBXNativeTarget "UhniTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B60DF308183A8B4200AFE1C3 /* Debug */,
+				B60DF309183A8B4200AFE1C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B60DF2C7183A8B4200AFE1C3 /* Project object */;
+}
