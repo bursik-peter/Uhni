@@ -16,13 +16,8 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tapGestureRecognizer id="JA0-QY-gnk">
-            <connections>
-                <action selector="onTestTap:" destination="-1" id="3G8-b9-1FG"/>
-            </connections>
-        </tapGestureRecognizer>
         <view contentMode="scaleToFill" id="WFQ-Xg-JdN">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" red="0.98039215686274506" green="0.59607843137254901" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
@@ -35,5 +30,10 @@
                 <outletCollection property="gestureRecognizers" destination="JA0-QY-gnk" appends="YES" id="5Vz-Kh-bZ1"/>
             </connections>
         </view>
+        <tapGestureRecognizer id="JA0-QY-gnk">
+            <connections>
+                <action selector="onTestTap:" destination="-1" id="3G8-b9-1FG"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

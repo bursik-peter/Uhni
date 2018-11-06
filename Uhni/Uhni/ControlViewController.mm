@@ -7,13 +7,16 @@
 //
 
 #import <opencv2/opencv.hpp>
+#import <opencv2/imgproc.hpp>
 #import <vector>
 #import <AVFoundation/AVFoundation.h>
 
 #import "ControlViewController.h"
 #import "GameViewController.h"
 #import "UIImageView+CoordinateTransform.h"
+#import "UIImage+Mat.h"
 
+#import <opencv2/imgcodecs/ios.h>
 
 
 
@@ -25,17 +28,16 @@
     IBOutlet UIImageView *_imageView;
     __weak IBOutlet UISlider *_thresholdSlider;
     __weak IBOutlet UISlider *_focusSlider;
-    BOOL _calibrating;
     BOOL _transform;
-    BOOL _applyThreshold;
+    BOOL _calibrating;
     
     CGPoint _panCorners[4];
-    CGFloat _shadowThreshold;
     CGFloat _lensPosition;
     
     AVCaptureDevice* _cam;
     
     cv::Mat _mat;
+    cv::Mat _referenceMat;
     cv::Mat _transmtx;
     
     CAShapeLayer* _warpedDestQuadLayer;
@@ -43,11 +45,16 @@
     CGRect _destFrame;// Corners of the destination image
     std::vector<cv::Point2f> _dest_corners;
     cv::Mat _destMat;
+
     
     NSArray* _displayEnemyLayers;
+    
+    BOOL _gameInitialized;
 }
 
 @property (strong,nonatomic) AVCaptureSession* captureSession;
+
+@property BOOL calibrating;
 
 @end
 
@@ -55,50 +62,26 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
     
     [self createAVSession];
-    [self onCalibrate:nil];
     [self loadCalibrationFromDefaults];
+    [self updateAndShowWarpedDestQuadLayer];
     
     _transform = NO;
-    _applyThreshold = YES;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if(_gameViewController)
-        {
-            [self onDoneCalibrating:nil];
-        }
-    });
+    self.calibrating = NO;
+    _gameInitialized = NO;
     
     // Do any additional setup after loading the view.
-    
 }
 
-- (IBAction)thresholdValueChanged:(UISlider *)sender {
-    _shadowThreshold = sender.value;
-}
-
-- (IBAction)focusSliderValueChanged:(UISlider*)sender {
-    [_cam setFocusModeLockedWithLensPosition:sender.value completionHandler:^(CMTime syncTime) {
-        
-    }];
-}
-
-- (IBAction)onPan:(UIPanGestureRecognizer*)sender
+-(void)gameDidLayoutSubviews:(GameViewController *)gameViewController
 {
-    CGPoint p = [sender locationInView:_imageView];
-    CGPoint d = [sender translationInView:_imageView];
-    CGPoint s = CGPointMake(p.x-d.x, p.y-d.y);
-    
-    bool left = s.x > (_imageView.bounds.size.width/2.0) ? NO:YES;
-    bool top = s.y > (_imageView.bounds.size.height/2.0) ? NO:YES;
-    
-    p.x+=left?-30:30;
-    
-    _panCorners[left ? (top ? 0 : 3) : (top ? 1 : 2) ] = p;
-    
-    [self updateAndShowWarpedDestQuadLayer];
+    if(!_gameInitialized) {
+        [self captureReferenceAndStartGame];
+        _gameInitialized = YES;
+    }
 }
 
 - (void) loadCalibrationFromDefaults {
@@ -124,10 +107,6 @@
     [_focusSlider setValue:_lensPosition animated:NO];
     [_cam setFocusModeLockedWithLensPosition:_lensPosition completionHandler:^(CMTime syncTime) {}];
     
-    
-    NSNumber* thresholdVal = [[NSUserDefaults standardUserDefaults] valueForKey:@"shadowThreshold"];
-    _shadowThreshold = thresholdVal ? thresholdVal.integerValue : 128;
-    [_thresholdSlider setValue:_shadowThreshold animated:NO];
 }
 
 -(void) saveCalibrationToDefaults {
@@ -138,8 +117,6 @@
                                               forKey:@"corners"];
     
     [[NSUserDefaults standardUserDefaults] setFloat:_lensPosition forKey:@"lensPosition"];
-    [[NSUserDefaults standardUserDefaults] setFloat:_shadowThreshold forKey:@"shadowThreshold"];
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -148,36 +125,33 @@
     [_cam unlockForConfiguration];
 }
 
-
-
-- (IBAction)onCalibrate:(id)sender {
-    _imageView.userInteractionEnabled = YES;
-    _gameViewController.calibrating = YES;
-    _calibrating = YES;
-    _thresholdSlider.hidden = NO;
-    
-    [_displayEnemyLayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
-    _displayEnemyLayers = nil;
-    
-    
-    [self updateAndShowWarpedDestQuadLayer];
+-(BOOL)calibrating {
+    return _calibrating;
 }
 
-- (IBAction)onTransform:(id)sender {
-    _transform = !_transform;
+- (void)setCalibrating:(BOOL)calibrating {
+    _calibrating = calibrating;
+    
+    _imageView.userInteractionEnabled = calibrating;
+    _thresholdSlider.hidden = !calibrating;
+    
+    if(calibrating){
+        [self updateAndShowWarpedDestQuadLayer];
+    }
+    else {
+        _warpedDestQuadLayer.opacity = 0.5;
+    }
 }
-- (IBAction)onThreshold:(id)sender {
-    _applyThreshold = !_applyThreshold;
-}
+
+
 
 -(void) updateAndShowWarpedDestQuadLayer {
     
     [_warpedDestQuadLayer removeFromSuperlayer];
     _warpedDestQuadLayer = [[CAShapeLayer alloc] init];
     _warpedDestQuadLayer.frame = _imageView.bounds;
-    _warpedDestQuadLayer.strokeColor = [UIColor redColor].CGColor;
-    _warpedDestQuadLayer.fillColor = [UIColor clearColor].CGColor;
-    _warpedDestQuadLayer.lineWidth = 3;
+    _warpedDestQuadLayer.strokeColor = [UIColor clearColor].CGColor;
+    _warpedDestQuadLayer.fillColor = [UIColor colorWithRed:0 green:0.5 blue:1.0 alpha:0.5].CGColor;
     UIBezierPath *rectPath = [UIBezierPath bezierPath];
     [rectPath moveToPoint:_panCorners[0]];
     [rectPath addLineToPoint:_panCorners[1]];
@@ -189,21 +163,8 @@
     [_imageView.layer addSublayer:_warpedDestQuadLayer];
 }
 
-- (IBAction)onDoneCalibrating:(id)sender {
-    
-    
-
-    
-    if(!_calibrating) return;
-    
-    _warpedDestQuadLayer.opacity = 0.5;
-    
-    [self saveCalibrationToDefaults];
-    
-    _calibrating = NO;
-    _imageView.userInteractionEnabled = NO;
-    _thresholdSlider.hidden = YES;
-    _gameViewController.calibrating = NO;
+-(void) calculateTransformationMatrix {
+    std::vector<cv::Point2f> pixelSpaceSourceCorners;
     
     _destFrame = CGRectMake(0, 0, (int)(_gameViewController.view.frame.size.width), (int)(_gameViewController.view.frame.size.height));
     _dest_corners.clear();
@@ -212,25 +173,6 @@
     _dest_corners.push_back(cv::Point2f(CGRectGetMaxX(_destFrame), CGRectGetMaxY(_destFrame)));
     _dest_corners.push_back(cv::Point2f(CGRectGetMinX(_destFrame), CGRectGetMaxY(_destFrame)));
     
-    _destMat = cv::Mat::zeros(_destFrame.size.height,_destFrame.size.width, CV_8UC1);
-    
-    // Get transformation matrix
-    
-    [self calculateTransformationMatrix];
-}
-
-- (IBAction)onTestGameVC:(id)sender {
-    _gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
-    [self addChildViewController:_gameViewController];
-    _gameViewController.control = self;
-    _gameViewController.view.frame = self.view.bounds;
-    [self.view addSubview:_gameViewController.view];
-}
-
--(void) calculateTransformationMatrix {
-    std::vector<cv::Point2f> pixelSpaceSourceCorners;
-    
-    pixelSpaceSourceCorners.clear();
     pixelSpaceSourceCorners.push_back(vecPoint([_imageView pixelPointFromViewPoint:_panCorners[0]]));
     pixelSpaceSourceCorners.push_back(vecPoint([_imageView pixelPointFromViewPoint:_panCorners[1]]));
     pixelSpaceSourceCorners.push_back(vecPoint([_imageView pixelPointFromViewPoint:_panCorners[2]]));
@@ -241,7 +183,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"mamory warning");// Dispose of any resources that can be recreated.
 }
 
 -(void) createAVSession
@@ -333,15 +275,109 @@ cv::Vec2f vecPoint(CGPoint p)
     return cv::Vec2f(p.x,p.y);
 }
 
-std::vector<cv::Vec2f> vecFromArray(NSArray* pointArray)
-{
-    std::vector<cv::Vec2f> result;
-    for(NSValue* v in pointArray) {
-        result.push_back(vecPoint([v CGPointValue]));
+#pragma mark -
+#pragma mark Actions
+
+- (IBAction)onToggleCalibrationPause:(UIButton*)sender {
+    
+    BOOL paused = !sender.selected;
+    
+    sender.selected = paused;
+    self.calibrating = paused;
+    
+    if(paused){
+        [_displayEnemyLayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+        _displayEnemyLayers = nil;
+        _gameViewController.paused = YES;
+    } else {
+        [self captureReferenceAndStartGame];
     }
-    return result;
 }
 
+-(void) captureReferenceAndStartGame{
+    [self saveCalibrationToDefaults];
+    [_gameViewController showReference];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _mat.copyTo(_referenceMat);
+        
+        
+        cv::Mat edges = cv::Mat::zeros(_mat.rows, _mat.cols, CV_8U);
+        //_mat.convertTo(edges, CV_32F);
+        
+        cv::blur(_mat, edges, cv::Size(3,3));
+        cv::Canny(edges, edges, 50.0, 200.0);
+        
+        std::vector<std::vector<cv::Point>> countours;
+        std::vector<cv::Vec4i> temp;
+        
+        cv::floodFill(edges, cv::Point(edges.cols/2,edges.rows/2), 255);
+        cv::findContours(edges, countours, temp, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_TC89_KCOS);
+
+        std::vector<cv::Point> finalRectangle;
+        
+        double maxArea = 0.0;
+        for(auto i = countours.begin(); i<countours.end(); i++)
+        {
+            std::vector<cv::Point> approxCurve;
+            
+            cv::approxPolyDP((*i), approxCurve, 2.0, true);
+            
+            
+            if(approxCurve.size()!=4) continue;
+            
+            double curveArea = cv::moments(approxCurve).m00;
+            if(curveArea > maxArea)
+            {
+                finalRectangle = approxCurve;
+                maxArea = curveArea;
+            }
+        }
+        
+        if(!finalRectangle.empty()) {
+            
+            //map the contour to the final rect (start at top left and go counterclockwise)
+            
+            //order
+            cv::Vec2i a = cv::Vec2i(finalRectangle[1].x-finalRectangle[0].x,finalRectangle[1].y-finalRectangle[0].y);
+            cv::Vec2i b = cv::Vec2i(finalRectangle[2].x-finalRectangle[1].x,finalRectangle[2].y-finalRectangle[1].y);
+            if(a[0]*b[1]-a[1]*b[0] < 0) std::reverse(finalRectangle.begin(), finalRectangle.end());
+            
+            //orientation
+            auto topLeft = finalRectangle.begin();
+            for(auto i = finalRectangle.begin()+1;i<finalRectangle.end();i++) {
+                if(i->x+i->y < topLeft->x+topLeft->y ) {
+                    topLeft = i;
+                }
+            }
+            std::rotate(finalRectangle.begin(), topLeft, finalRectangle.end());
+            
+            for(int i = 0; i<4; i++) {
+                _panCorners[i] = [_imageView viewPointFromPixelPoint:CGPointMake(finalRectangle[i].x, finalRectangle[i].y)];
+            }
+            
+            [self calculateTransformationMatrix];
+            [self updateAndShowWarpedDestQuadLayer];
+            [self saveCalibrationToDefaults];
+        }
+
+        _gameViewController.paused = NO;
+    });
+}
+
+- (IBAction)onTransform:(id)sender {
+    _transform = !_transform;
+}
+
+- (IBAction)onTestGameVC:(id)sender {
+    self.calibrating = NO;
+    _gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
+    [self addChildViewController:_gameViewController];
+    _gameViewController.control = self;
+    _gameViewController.view.frame = self.view.bounds;
+    [self.view addSubview:_gameViewController.view];
+    
+    
+}
 
 #pragma mark -
 #pragma mark AVCaptureSession delegate
@@ -370,35 +406,46 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     _mat = cv::Mat((int)height, (int)width, CV_8UC1, baseaddress, CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 0));
     
-    if(_applyThreshold) {
-        cv::threshold(_mat, _mat,_shadowThreshold, 255, cv::THRESH_BINARY);
-    }
     
     if(!_calibrating) {
         [_gameViewController onControlCapturedCamFrame];
     }
     
+    cv::Mat matToDisplay;
+    
     if(_transform && !_calibrating)
     {
+        if(_destMat.empty())
+        {
+            _destMat = cv::Mat::zeros(_destFrame.size.height,_destFrame.size.width, CV_8UC1);
+        }
+        
         //Apply perspective transformation
         cv::warpPerspective(_mat, _destMat, _transmtx, _destMat.size(), CV_WARP_INVERSE_MAP);
         
-        UIImage* i = [self UIImageFromCVMat:_destMat];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _imageView.image = i;
-        });
+        matToDisplay = _destMat;
+    } else if(_calibrating || _referenceMat.empty()){
+        matToDisplay = _mat;
     } else {
-        UIImage* i = [self UIImageFromCVMat:_mat];
+        matToDisplay = (_mat-(_referenceMat/5*4-8))*255;
+    }
+    
+    if(!matToDisplay.empty()) {
+        UIImage* i = [UIImage fromMat:matToDisplay];
         dispatch_async(dispatch_get_main_queue(), ^{
             _imageView.image = i;
         });
     }
-    
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-
 }
 
+#pragma mark -
+#pragma mark GameViewControllerDelegate
+
+
 -(BOOL)isObjectViewVisible:(std::vector<cv::Vec2f>) controlPoints {
+    
+    if(_referenceMat.empty()) return YES;
     
     std::vector<cv::Vec2f> camFrameControlPoints;
     cv::perspectiveTransform(controlPoints, camFrameControlPoints, _transmtx);
@@ -406,7 +453,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     for(std::vector<cv::Vec2f>::iterator i = camFrameControlPoints.begin();i!=camFrameControlPoints.end();i++)
     {
-        if(_mat.at<unsigned char>((*i)[1],(*i)[0])<_shadowThreshold) return NO;
+        int current = _mat.at<unsigned char>((*i)[1],(*i)[0]);
+        int orig = _referenceMat.at<unsigned char>((*i)[1],(*i)[0]);
+        
+        if(current < (orig*0.8)-8) return NO;
     }
     return YES;
 }
@@ -451,41 +501,31 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
 }
 
--(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
+#pragma mark -
+#pragma mark Calibrations
+
+
+- (IBAction)focusSliderValueChanged:(UISlider*)sender {
+    _lensPosition = sender.value;
+    [_cam setFocusModeLockedWithLensPosition:_lensPosition completionHandler:^(CMTime syncTime) {
+        
+    }];
+}
+
+- (IBAction)onPan:(UIPanGestureRecognizer*)sender
 {
-    NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.rows*cvMat.step[0]];
-    CGColorSpaceRef colorSpace;
+    CGPoint p = [sender locationInView:_imageView];
+    CGPoint d = [sender translationInView:_imageView];
+    CGPoint s = CGPointMake(p.x-d.x, p.y-d.y);
     
-    if (cvMat.elemSize() == 1) {
-        colorSpace = CGColorSpaceCreateDeviceGray();
-    } else {
-        colorSpace = CGColorSpaceCreateDeviceRGB();
-    }
+    bool left = s.x > (_imageView.bounds.size.width/2.0) ? NO:YES;
+    bool top = s.y > (_imageView.bounds.size.height/2.0) ? NO:YES;
     
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+    p.x+=left?-30:30;
     
-    // Creating CGImage from cv::Mat
-    CGImageRef imageRef = CGImageCreate(cvMat.cols,                                 //width
-                                        cvMat.rows,                                 //height
-                                        8,                                          //bits per component
-                                        8 * cvMat.elemSize(),                       //bits per pixel
-                                        cvMat.step[0],                              //bytesPerRow
-                                        colorSpace,                                 //colorspace
-                                        kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
-                                        provider,                                   //CGDataProviderRef
-                                        NULL,                                       //decode
-                                        false,                                      //should interpolate
-                                        kCGRenderingIntentDefault                   //intent
-                                        );
+    _panCorners[left ? (top ? 0 : 3) : (top ? 1 : 2) ] = p;
     
-    
-    // Getting UIImage from CGImage
-    UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    CGDataProviderRelease(provider);
-    CGColorSpaceRelease(colorSpace);
-    
-    return finalImage;
+    [self updateAndShowWarpedDestQuadLayer];
 }
 
 

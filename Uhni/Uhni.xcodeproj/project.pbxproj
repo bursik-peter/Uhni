@@ -28,8 +28,12 @@
 		B60DF319183AB59D00AFE1C3 /* ControlViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B60DF318183AB59D00AFE1C3 /* ControlViewController.mm */; };
 		B60DF31B183ABD9600AFE1C3 /* ControlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60DF31A183ABD9600AFE1C3 /* ControlViewController.xib */; };
 		B60DF3A7183CB43200AFE1C3 /* dcb.png in Resources */ = {isa = PBXBuildFile; fileRef = B60DF3A6183CB43200AFE1C3 /* dcb.png */; };
+		B64C96FC2187B85000892150 /* UIImage+Mat.mm in Sources */ = {isa = PBXBuildFile; fileRef = B64C96FB2187B85000892150 /* UIImage+Mat.mm */; };
 		B66D055B216E020900642500 /* BouncySquareEnemy.mm in Sources */ = {isa = PBXBuildFile; fileRef = B66D055A216E020900642500 /* BouncySquareEnemy.mm */; };
 		B66D055D216E277200642500 /* BouncySquareEnemy.xib in Resources */ = {isa = PBXBuildFile; fileRef = B66D055C216E277200642500 /* BouncySquareEnemy.xib */; };
+		B6C13D69218A5FD800DF8D15 /* ScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C13D67218A5FD800DF8D15 /* ScoreCell.m */; };
+		B6C13D6A218A5FD800DF8D15 /* ScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C13D68218A5FD800DF8D15 /* ScoreCell.xib */; };
+		B6C13D6D218B106B00DF8D15 /* ScoreEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C13D6C218B106B00DF8D15 /* ScoreEntry.m */; };
 		B6DC724A216B82DD007BCC95 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC7249216B82DD007BCC95 /* AssetsLibrary.framework */; };
 		B6DC724C216B82E4007BCC95 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC724B216B82E4007BCC95 /* Accelerate.framework */; };
 		B6DC724E216B82F1007BCC95 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DC724D216B82F1007BCC95 /* CoreImage.framework */; };
@@ -42,6 +46,7 @@
 		B6E05F5E217784B1007A869C /* bensound-house.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B6E05F5B217784B1007A869C /* bensound-house.m4a */; };
 		B6E05F62217793FE007A869C /* bulb.wav in Resources */ = {isa = PBXBuildFile; fileRef = B6E05F61217793FE007A869C /* bulb.wav */; };
 		B6E05F64217796A3007A869C /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = B6E05F63217796A3007A869C /* gameover.wav */; };
+		B6F6653F218FA73100E01E7A /* SP-Tarova.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B6F6653E218FA73100E01E7A /* SP-Tarova.m4a */; };
 		B6FD5C3D1B28C30D001B31E5 /* WallObjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6FD5C3C1B28C30D001B31E5 /* WallObjectView.xib */; };
 		B6FD5C401B28C476001B31E5 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD5C3F1B28C476001B31E5 /* UIView+Layout.m */; };
 		D17345B650E6FA53F7DBF93C /* libPods-UhniTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC77776711FA47E8776E752E /* libPods-UhniTests.a */; };
@@ -89,9 +94,18 @@
 		B60DF318183AB59D00AFE1C3 /* ControlViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ControlViewController.mm; sourceTree = "<group>"; };
 		B60DF31A183ABD9600AFE1C3 /* ControlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlViewController.xib; sourceTree = "<group>"; };
 		B60DF3A6183CB43200AFE1C3 /* dcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dcb.png; sourceTree = "<group>"; };
+		B64C96FA2187B85000892150 /* UIImage+Mat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mat.h"; sourceTree = "<group>"; };
+		B64C96FB2187B85000892150 /* UIImage+Mat.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Mat.mm"; sourceTree = "<group>"; };
 		B66D0559216E020900642500 /* BouncySquareEnemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BouncySquareEnemy.h; sourceTree = "<group>"; };
 		B66D055A216E020900642500 /* BouncySquareEnemy.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BouncySquareEnemy.mm; sourceTree = "<group>"; };
 		B66D055C216E277200642500 /* BouncySquareEnemy.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BouncySquareEnemy.xib; sourceTree = "<group>"; };
+		B6C13D66218A5FD800DF8D15 /* ScoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreCell.h; sourceTree = "<group>"; };
+		B6C13D67218A5FD800DF8D15 /* ScoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreCell.m; sourceTree = "<group>"; };
+		B6C13D68218A5FD800DF8D15 /* ScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreCell.xib; sourceTree = "<group>"; };
+		B6C13D6B218B106B00DF8D15 /* ScoreEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreEntry.h; sourceTree = "<group>"; };
+		B6C13D6C218B106B00DF8D15 /* ScoreEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreEntry.m; sourceTree = "<group>"; };
+		B6C13D6E218B2F9400DF8D15 /* libiCarousel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libiCarousel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6C13D70218B2FF700DF8D15 /* libiCarousel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libiCarousel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC7249216B82DD007BCC95 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		B6DC724B216B82E4007BCC95 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		B6DC724D216B82F1007BCC95 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -105,6 +119,7 @@
 		B6E05F5B217784B1007A869C /* bensound-house.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bensound-house.m4a"; sourceTree = "<group>"; };
 		B6E05F61217793FE007A869C /* bulb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulb.wav; sourceTree = "<group>"; };
 		B6E05F63217796A3007A869C /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameover.wav; sourceTree = "<group>"; };
+		B6F6653E218FA73100E01E7A /* SP-Tarova.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SP-Tarova.m4a"; sourceTree = "<group>"; };
 		B6FD5C3C1B28C30D001B31E5 /* WallObjectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallObjectView.xib; sourceTree = "<group>"; };
 		B6FD5C3E1B28C476001B31E5 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		B6FD5C3F1B28C476001B31E5 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
@@ -182,6 +197,8 @@
 		B60DF2D1183A8B4200AFE1C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B6C13D70218B2FF700DF8D15 /* libiCarousel.a */,
+				B6C13D6E218B2F9400DF8D15 /* libiCarousel.a */,
 				B6DC7251216B831F007BCC95 /* libc++.tbd */,
 				B6DC724F216B8302007BCC95 /* CoreVideo.framework */,
 				B6DC724D216B82F1007BCC95 /* CoreImage.framework */,
@@ -221,9 +238,16 @@
 				B6FD5C3E1B28C476001B31E5 /* UIView+Layout.h */,
 				B6FD5C3F1B28C476001B31E5 /* UIView+Layout.m */,
 				B60DF3A6183CB43200AFE1C3 /* dcb.png */,
+				B64C96FA2187B85000892150 /* UIImage+Mat.h */,
+				B64C96FB2187B85000892150 /* UIImage+Mat.mm */,
 				B6DC7254216BF2E9007BCC95 /* UIImageView+CoordinateTransform.h */,
 				B6DC7253216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m */,
 				B60DF2ED183A8B4200AFE1C3 /* Images.xcassets */,
+				B6C13D66218A5FD800DF8D15 /* ScoreCell.h */,
+				B6C13D67218A5FD800DF8D15 /* ScoreCell.m */,
+				B6C13D68218A5FD800DF8D15 /* ScoreCell.xib */,
+				B6C13D6B218B106B00DF8D15 /* ScoreEntry.h */,
+				B6C13D6C218B106B00DF8D15 /* ScoreEntry.m */,
 				B60DF2D9183A8B4200AFE1C3 /* Supporting Files */,
 			);
 			path = Uhni;
@@ -265,6 +289,7 @@
 				B6E05F59217784B1007A869C /* bensound-dreams.m4a */,
 				B6E05F5B217784B1007A869C /* bensound-house.m4a */,
 				B6E05F5A217784B1007A869C /* bensound-scifi.m4a */,
+				B6F6653E218FA73100E01E7A /* SP-Tarova.m4a */,
 				B6E05F61217793FE007A869C /* bulb.wav */,
 				B6E05F63217796A3007A869C /* gameover.wav */,
 			);
@@ -353,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6C13D6A218A5FD800DF8D15 /* ScoreCell.xib in Resources */,
 				B60DF31B183ABD9600AFE1C3 /* ControlViewController.xib in Resources */,
 				B60DF2EE183A8B4200AFE1C3 /* Images.xcassets in Resources */,
 				B6E05F5E217784B1007A869C /* bensound-house.m4a in Resources */,
@@ -361,6 +387,7 @@
 				B6FD5C3D1B28C30D001B31E5 /* WallObjectView.xib in Resources */,
 				B66D055D216E277200642500 /* BouncySquareEnemy.xib in Resources */,
 				B6E05F5D217784B1007A869C /* bensound-scifi.m4a in Resources */,
+				B6F6653F218FA73100E01E7A /* SP-Tarova.m4a in Resources */,
 				B6E05F64217796A3007A869C /* gameover.wav in Resources */,
 				B6E05F582177828B007A869C /* bensound-dance.m4a in Resources */,
 				B6E05F62217793FE007A869C /* bulb.wav in Resources */,
@@ -431,12 +458,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B64C96FC2187B85000892150 /* UIImage+Mat.mm in Sources */,
 				B66D055B216E020900642500 /* BouncySquareEnemy.mm in Sources */,
 				B60DF2EC183A8B4200AFE1C3 /* GameViewController.mm in Sources */,
 				B60DF30C183A8BB500AFE1C3 /* Enemy.mm in Sources */,
 				B60DF2E3183A8B4200AFE1C3 /* AppDelegate.mm in Sources */,
 				B6FD5C401B28C476001B31E5 /* UIView+Layout.m in Sources */,
+				B6C13D69218A5FD800DF8D15 /* ScoreCell.m in Sources */,
 				B6DC7255216BF2E9007BCC95 /* UIImageView+CoordinateTransform.m in Sources */,
+				B6C13D6D218B106B00DF8D15 /* ScoreEntry.m in Sources */,
 				B60DF2DF183A8B4200AFE1C3 /* main.m in Sources */,
 				B60DF319183AB59D00AFE1C3 /* ControlViewController.mm in Sources */,
 			);
@@ -585,6 +615,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4Y5TVW8QV;
@@ -596,7 +627,8 @@
 				GCC_PREFIX_HEADER = "Uhni/Uhni-Prefix.pch";
 				INFOPLIST_FILE = "Uhni/Uhni-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**";
 				PRODUCT_BUNDLE_IDENTIFIER = brx2.Uhni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -610,6 +642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4Y5TVW8QV;
@@ -621,7 +654,7 @@
 				GCC_PREFIX_HEADER = "Uhni/Uhni-Prefix.pch";
 				INFOPLIST_FILE = "Uhni/Uhni-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**";
 				PRODUCT_BUNDLE_IDENTIFIER = brx2.Uhni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

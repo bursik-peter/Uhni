@@ -17,6 +17,7 @@
 
 @property (nonatomic,strong) GameViewController* gameViewController;
 
+-(void)gameDidLayoutSubviews:(GameViewController*) gameViewController;
 -(BOOL)isObjectViewVisible:(std::vector<cv::Vec2f>)controlPoints;
 -(void)displayObjectsPoints:(NSArray*) objectViews;
 

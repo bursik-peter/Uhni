@@ -1,16 +1,20 @@
 PODS:
+  - iCarousel (1.8.3)
   - OpenCV (3.4.2)
 
 DEPENDENCIES:
+  - iCarousel
   - OpenCV
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - iCarousel
     - OpenCV
 
 SPEC CHECKSUMS:
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   OpenCV: 452909747854c92e0f59670961ed5131f5286cb5
 
-PODFILE CHECKSUM: f1bf7397de7d87d93c3b538f4f48abe7e1b91d7b
+PODFILE CHECKSUM: 5739b6990183d46198fba38582c22adaea7f99e3
 
 COCOAPODS: 1.5.3

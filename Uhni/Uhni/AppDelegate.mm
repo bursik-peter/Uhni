@@ -9,11 +9,15 @@
 #import "AppDelegate.h"
 #import "GameViewController.h"
 #import "ControlViewController.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     // Override point for customization after application launch.
     [application setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
@@ -49,6 +53,10 @@
 											 selector:@selector(screenDidDisconnect:)
 												 name:UIScreenDidDisconnectNotification
 											   object:nil];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+                                                       error:nil];
     
     return YES;
 }
@@ -130,7 +138,11 @@
             [self.windows removeObjectIdenticalTo:_window];
         }
     }
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+                                                       error:nil];
     return;
+    
 }
 
 @end
