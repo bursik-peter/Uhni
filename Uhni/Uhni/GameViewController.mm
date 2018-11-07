@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger, GameState)
     NSTimer* _countdownTimer;
     __weak IBOutlet UIView *_readyView;
     
+    NSString* _currentName;
     __weak IBOutlet UIView *_nameInputView;
     NSMutableArray* _letterViews;
     NSMutableSet* _spentLetterViews;
@@ -46,6 +47,7 @@ typedef NS_ENUM(NSInteger, GameState)
     __weak IBOutlet UIButton *_confirmNameButton;
     __weak IBOutlet UILabel *_nameLabel;
     __weak IBOutlet UILabel *_nameInputScoreLabel;
+    __weak IBOutlet UILabel *_nameInputPlaceLabel;
     
     
     __weak IBOutlet UITableView *_scoreBoardTableView;
@@ -84,6 +86,7 @@ typedef NS_ENUM(NSInteger, GameState)
 
 @property (nonatomic) NSInteger countdown;
 
+@property (nonatomic, strong) NSString* currentName;
 
 @property (strong, nonatomic) IBOutlet UIView *calibrationView;
 
@@ -124,21 +127,6 @@ typedef NS_ENUM(NSInteger, GameState)
     [_scoreBoardTableView reloadData];
 }
 
-- (IBAction)onreadyTestButton:(id)sender {
-    [self setGameState:GameStateNameInput];
-}
-- (IBAction)onConfirmName:(id)sender {
-    [self setGameState:GameStateCountDown];
-}
-
--(void) onLetterTest:(UIButton*) sender {
-    _nameLabel.text = [_nameLabel.text stringByAppendingString:sender.titleLabel.text];
-}
-
--(IBAction)onResetName:(UIButton*) sender {
-    _nameLabel.text = @"";
-}
-
 -(void) setGameState:(GameState) gameState
 {
     _gameState = gameState;
@@ -168,7 +156,7 @@ typedef NS_ENUM(NSInteger, GameState)
             _countdownLabel.hidden = NO;
             _gameOverView.hidden = YES;
             
-            _nameLabel.text = @"";
+            self.currentName = @"";
             
             _nameInputView.hidden = NO;
             break;
@@ -202,7 +190,7 @@ typedef NS_ENUM(NSInteger, GameState)
             _countdownLabel.hidden = YES;
             _gameOverView.hidden = NO;
             
-            BOOL highScore = [self addScoreEntry:[[ScoreEntry alloc] initWithName:_nameLabel.text andScore:_score]];
+            BOOL highScore = [self addScoreEntry:[[ScoreEntry alloc] initWithName:_currentName andScore:_score]];
 
             
             
@@ -211,7 +199,7 @@ typedef NS_ENUM(NSInteger, GameState)
             [_gameOverPlayer play];
             
             _gameOverScoreLabel.text = [NSString stringWithFormat:@"Score: %d", _score];
-            _gameOverPlaceLabel.text = [NSString stringWithFormat:(highScore ? @"New Record! %@ place!" : @"No record! Staying at %@ place" ), [self getOrdinalStringFromInteger:[_scores indexOfObject:[self scoreForPlayer:_nameLabel.text]]+1]];
+            _gameOverPlaceLabel.text = [NSString stringWithFormat:(highScore ? @"New Record! %@ place!" : @"No record! Staying at %@ place" ), [self getOrdinalStringFromInteger:[_scores indexOfObject:[self scoreForPlayer:self.currentName]]+1]];
             
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -417,14 +405,6 @@ typedef NS_ENUM(NSInteger, GameState)
         [_scoreBoardTableView endUpdates];
         [_scoreBoardTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_currentPosition inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
-//    else if(_currentPosition < _scores.count-1 && _scores[_currentPosition+1].score > score)
-//    {
-//        [_scoreBoardTableView beginUpdates];
-//        [_scoreBoardTableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:_currentPosition inSection:0] toIndexPath:[NSIndexPath indexPathForRow:_currentPosition+1 inSection:0]];
-//        _currentPosition++;
-//        [_scoreBoardTableView endUpdates];
-//        [_scoreBoardTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_currentPosition inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-//    }
 }
 
 
@@ -439,7 +419,7 @@ typedef NS_ENUM(NSInteger, GameState)
 
 -(BOOL)addScoreEntry:(ScoreEntry*) scoreEntry
 {
-    ScoreEntry* previousRecord = [self scoreForPlayer:_nameLabel.text];
+    ScoreEntry* previousRecord = [self scoreForPlayer:scoreEntry.name];
     BOOL highScore = _score > (previousRecord?previousRecord.score:NSIntegerMin);
     
     if(!highScore) return false;
@@ -472,43 +452,28 @@ typedef NS_ENUM(NSInteger, GameState)
                 {
                     if([_spentLetterViews containsObject:v]) continue;
                     
-                    
                     std::vector<cv::Vec2f> rPoints = {(cv::Vec2f(CGRectGetMidX(v.frame), CGRectGetMidY(v.frame)))};
                     
                     if(![_control isObjectViewVisible:rPoints]) {
                         
-                        if(_nameLabel.text.length<3) {
-                            _nameLabel.text = [_nameLabel.text stringByAppendingString:v.titleLabel.text];
-                            ScoreEntry* scoreEntry = [self scoreForPlayer:_nameLabel.text];
-                            if(scoreEntry) {
-                                _nameInputScoreLabel.text = [NSString stringWithFormat:@"Score: %ld", scoreEntry.score];
-                            }
-                            else
-                            {
-                                _nameInputScoreLabel.text = @"";
-                            }
-                        }
+                        [self onLetter:v.titleLabel.text];
+                        
                         [_spentLetterViews addObject:v];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [_spentLetterViews removeObject:v];
                         });
                     }
-                    
                 }
                 
                 
                 std::vector<cv::Vec2f> confirmPoint = {(cv::Vec2f(_confirmNameButton.centerX, _confirmNameButton.centerY))};
                 if(![_control isObjectViewVisible:confirmPoint]) {
-                    
-                    if(_nameLabel.text.length>=3) [self setGameState:GameStateCountDown];
-                    
+                    [self onConfirmName:nil];
                 }
-                
                 
                 std::vector<cv::Vec2f> resetPoint = {(cv::Vec2f(_resetNameButton.centerX, _resetNameButton.centerY))};
                 if(![_control isObjectViewVisible:resetPoint]) {
-                    _nameLabel.text=@"";
-                    
+                    [self onResetName:nil];
                 }
                 return;
             }
@@ -539,6 +504,13 @@ typedef NS_ENUM(NSInteger, GameState)
 -(void)showReference
 {
     _enemyColorView.hidden = NO;
+}
+
+#pragma mark -
+#pragma mark name input
+
+- (IBAction)onreadyTestButton:(id)sender {
+    [self setGameState:GameStateNameInput];
 }
 
 -(void)layoutLetters
@@ -576,6 +548,47 @@ typedef NS_ENUM(NSInteger, GameState)
     }
 }
 
+-(NSString*) currentName {
+    return _currentName;
+}
+
+-(void)setCurrentName:(NSString *)currentName {
+    _currentName = currentName;
+    _nameLabel.text = currentName;
+    ScoreEntry* scoreEntry = [self scoreForPlayer:currentName];
+    
+    if(scoreEntry) {
+        _nameInputScoreLabel.text = [NSString stringWithFormat:@"Score: %ld", scoreEntry.score];
+        _nameInputPlaceLabel.text = [NSString stringWithFormat:@"%@ place",[self getOrdinalStringFromInteger:[_scores indexOfObject:scoreEntry]+1]];
+    }
+    else
+    {
+        _nameInputScoreLabel.text = @"";
+        _nameInputPlaceLabel.text = @"";
+    }
+}
+
+- (IBAction)onConfirmName:(id)sender {
+    if(self.currentName.length>=3) [self setGameState:GameStateCountDown];
+}
+
+-(void) onLetterTest:(UIButton*) sender {
+    [self onLetter:sender.titleLabel.text];
+}
+
+-(void) onLetter:(NSString*) letter {
+    if(self.currentName.length<3) {
+        self.currentName = [self.currentName stringByAppendingString:letter];
+    }
+}
+
+-(IBAction)onResetName:(UIButton*) sender {
+    self.currentName = @"";
+}
+
+#pragma mark -
+#pragma mark Score Board
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ScoreCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ScoreCell"];
@@ -588,7 +601,7 @@ typedef NS_ENUM(NSInteger, GameState)
     if(_gameState == GameStatePlaying) {
         BOOL currentPlayer = indexPath.row == _currentPosition;
         if(currentPlayer) {
-            [cell displayPlace:0 Name:_nameLabel.text andScore:_score];
+            [cell displayPlace:0 Name:_currentName andScore:_score];
         } else {
             NSInteger scoreIndex = indexPath.row - (indexPath.row > _currentPosition ? 1 : 0);
             [cell displayPlace:scoreIndex+1 Name:_scores[scoreIndex].name andScore:_scores[scoreIndex].score];

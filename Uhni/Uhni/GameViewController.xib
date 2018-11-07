@@ -18,6 +18,8 @@
                 <outlet property="_gameOverPlaceLabel" destination="WZm-Mc-2Zq" id="I6A-I5-UoP"/>
                 <outlet property="_gameOverScoreLabel" destination="Rfe-Fo-rZX" id="2SO-1u-szL"/>
                 <outlet property="_gameOverView" destination="r02-G6-3ia" id="d45-xW-h5d"/>
+                <outlet property="_nameInputPlaceLabel" destination="yju-SR-B06" id="Ywj-F6-aah"/>
+                <outlet property="_nameInputScoreLabel" destination="RtT-7P-8Xp" id="ISx-Dc-tBr"/>
                 <outlet property="_nameInputView" destination="k4D-5S-vb4" id="yNQ-4q-YY3"/>
                 <outlet property="_nameLabel" destination="3Bp-FH-A0a" id="iYG-n7-nJd"/>
                 <outlet property="_readyView" destination="Hvp-lk-PdC" id="EMB-V4-WUL"/>
@@ -181,6 +183,20 @@
                                 <action selector="onConfirmName:" destination="-1" eventType="touchUpInside" id="DBP-xa-nRQ"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="100" id="RtT-7P-8Xp">
+                            <rect key="frame" x="54" y="220" width="180" height="100"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
+                            <color key="textColor" red="0.66147598959999998" green="0.88572924929999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="100" id="yju-SR-B06">
+                            <rect key="frame" x="324" y="220" width="200" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
+                            <color key="textColor" red="0.66147598959999998" green="0.88572924929999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

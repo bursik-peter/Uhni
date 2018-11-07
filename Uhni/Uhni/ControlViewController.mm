@@ -297,6 +297,14 @@ cv::Vec2f vecPoint(CGPoint p)
 -(void) captureReferenceAndStartGame{
     [self saveCalibrationToDefaults];
     [_gameViewController showReference];
+    
+    if(_mat.empty())
+    {
+        //should happen only in test mode
+        _gameViewController.paused = NO;
+        return;
+    }
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         _mat.copyTo(_referenceMat);
         
@@ -338,11 +346,16 @@ cv::Vec2f vecPoint(CGPoint p)
             //map the contour to the final rect (start at top left and go counterclockwise)
             
             //order
+            //calculate vector product to test if the first two sides of the rectangle turn "right" (clockwise)
             cv::Vec2i a = cv::Vec2i(finalRectangle[1].x-finalRectangle[0].x,finalRectangle[1].y-finalRectangle[0].y);
             cv::Vec2i b = cv::Vec2i(finalRectangle[2].x-finalRectangle[1].x,finalRectangle[2].y-finalRectangle[1].y);
-            if(a[0]*b[1]-a[1]*b[0] < 0) std::reverse(finalRectangle.begin(), finalRectangle.end());
+            //coordinate system is flipped vertically, so clockwise actually means the vector product is positive
+            if(a[0]*b[1]-a[1]*b[0] < 0) {
+                //if negative we need to reverse the points
+                std::reverse(finalRectangle.begin(), finalRectangle.end());
+            }
             
-            //orientation
+            //orientation - shift the points so that we start with the top left (x+y is the lowest there)
             auto topLeft = finalRectangle.begin();
             for(auto i = finalRectangle.begin()+1;i<finalRectangle.end();i++) {
                 if(i->x+i->y < topLeft->x+topLeft->y ) {
@@ -351,6 +364,7 @@ cv::Vec2f vecPoint(CGPoint p)
             }
             std::rotate(finalRectangle.begin(), topLeft, finalRectangle.end());
             
+            //transform to view coordinatest
             for(int i = 0; i<4; i++) {
                 _panCorners[i] = [_imageView viewPointFromPixelPoint:CGPointMake(finalRectangle[i].x, finalRectangle[i].y)];
             }
